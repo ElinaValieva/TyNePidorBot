@@ -24,7 +24,7 @@ public class StartExecutor implements Executor {
                 SendMessage sendMessage = new SendMessage()
                         .setChatId(416062411L)
                         .setText("Ты пидор!");
-                logger.log(Level.FINE, "Start send message {}", sendMessage.getText());
+                logger.log(Level.FINE, String.format("Start send message %s", sendMessage.getText()));
                 telegramBot.sendMessage(sendMessage);
             }
         }, 0, executionInstruction.getTimeReminding());
