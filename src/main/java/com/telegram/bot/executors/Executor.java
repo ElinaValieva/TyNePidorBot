@@ -5,4 +5,8 @@ import com.telegram.bot.models.ExecutionInstruction;
 public interface Executor {
 
     void execute(ExecutionInstruction executionInstruction);
+
+    void stopExecuting();
+
+    void setupSettings();
 }

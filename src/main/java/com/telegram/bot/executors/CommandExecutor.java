@@ -1,48 +1,53 @@
 package com.telegram.bot.executors;
 
+import com.telegram.bot.models.TelegramBot;
 import com.telegram.bot.models.ExecutionInstruction;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
-public class CommandExecutor {
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-    private static Executor executor;
+public class CommandExecutor implements Executor {
 
-    public static void setCommandForExecutor(String command) {
-        if (command.equals(Commands.COMMANDS_START.command)) {
-            executor = new StartExecutor();
-            executor.execute(new ExecutionInstruction());
-        }
-        if (command.equals(Commands.COMMANDS_STOP.command)) {
-            executor = new StopExecutor();
-        }
-        if (command.equals(Commands.COMMANDS_SET_REMIND_TIME.command)) {
-            executor = new SettingsExecutor();
-        }
-        if (command.equals(Commands.COMMANDS_SET_RECIPIENT.command)) {
-            executor = new SettingsExecutor();
-        }
-        if (command.equals(Commands.COMMANDS_SET_IMAGES.command)) {
-            executor = new SettingsExecutor();
-        }
-        if (command.equals(Commands.COMMANDS_SET_MESSAGES.command)) {
-            executor = new SettingsExecutor();
-        }
+    Logger logger = Logger.getLogger(CommandExecutor.class.getName());
+    private static Timer timer;
+    private static CommandExecutor commandExecutor;
+
+    private CommandExecutor() {
     }
 
-    @Getter
-    @AllArgsConstructor
-    public enum Commands {
+    public static CommandExecutor getInstance() {
+        if (commandExecutor == null) {
+            commandExecutor = new CommandExecutor();
+            timer = new Timer();
+        }
+        return commandExecutor;
+    }
 
-        COMMANDS_START("/start", "Hello, this is TyPidorBot. Let's start!"),
-        COMMANDS_STOP("/stop", "Ok."),
-        COMMANDS_SET_REMIND_TIME("/time", "Set time reminding for pidors."),
-        COMMANDS_SET_RECIPIENT("/pidors", "Set all reminds pidors."),
-        COMMANDS_SET_MESSAGES("/message", "Set all message for pidors."),
-        COMMANDS_SET_IMAGES("/image", "Set all images for pidors."),
-        COMMANDS_ERROR("", "Wrong command. Use /help to start bot.");
+    public void execute(ExecutionInstruction executionInstruction) {
+        TelegramBot telegramBot = new TelegramBot();
 
-        private String command;
-        private String commandDescription;
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                SendMessage sendMessage = new SendMessage()
+                        .setChatId(416062411L)
+                        .setText("Ты пидор!");
+                logger.log(Level.FINE, String.format("Start send message %s", sendMessage.getText()));
+                telegramBot.sendMessage(sendMessage);
+            }
+        }, 0, executionInstruction.getTimeReminding());
+    }
+
+    @Override
+    public void stopExecuting() {
+        timer.cancel();
+    }
+
+    @Override
+    public void setupSettings() {
+        // todo
     }
 }
