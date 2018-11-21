@@ -1,6 +1,6 @@
-package com.telegram.bot;
+package com.telegram.bot.models;
 
-import com.telegram.bot.executors.CommandExecutor;
+import com.telegram.bot.executors.CommandHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,9 +15,9 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            CommandExecutor.setCommandForExecutor(update.getMessage().getText());
+            CommandHandler.setExecutor(update.getMessage().getText());
             SendMessage message = new SendMessage()
-                    .setText(CommandExecutor.Commands.COMMANDS_START.getCommandDescription())
+                    .setText(CommandHandler.Commands.COMMANDS_START.getCommandDescription())
                     .setChatId(update.getMessage().getChatId());
             sendMessage(message);
         }

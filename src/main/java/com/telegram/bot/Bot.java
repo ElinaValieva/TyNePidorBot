@@ -1,10 +1,11 @@
 package com.telegram.bot;
 
+import com.telegram.bot.models.TelegramBot;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-public class BotExecutor {
+public class Bot {
 
     public static void main(String[] args){
         ApiContextInitializer.init();
