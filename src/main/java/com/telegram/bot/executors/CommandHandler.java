@@ -4,9 +4,16 @@ import com.telegram.bot.models.ExecutionInstruction;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class CommandHandler {
 
+    private static Logger logger = Logger.getLogger(CommandHandler.class.getName());
+
     public static void setExecutor(String command) {
+        logger.log(Level.FINE, () -> String.format("Handle command %s", command));
+
         if (command.equals(Commands.COMMANDS_START.command)) {
             CommandExecutor.getInstance().execute(new ExecutionInstruction());
         }

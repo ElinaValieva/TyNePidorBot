@@ -20,14 +20,14 @@ public class ExecutionInstruction {
 
     public void setRecepients(String recipient) {
         if (recipients.isEmpty())
-            recipients = new HashSet<String>();
+            recipients = new HashSet<>();
 
         recipients.add(recipient);
     }
 
     public void setMessages(String message) {
         if (messages.isEmpty())
-            messages = new HashSet<String>();
+            messages = new HashSet<>();
 
         messages.add(message);
     }
@@ -38,7 +38,7 @@ public class ExecutionInstruction {
     }
 
     private void initMessagesList() {
-
+        //todo
     }
 
     public boolean checkReadinessInstruction() {

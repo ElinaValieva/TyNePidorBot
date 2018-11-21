@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class CommandExecutor implements Executor {
 
-    Logger logger = Logger.getLogger(CommandExecutor.class.getName());
+    private static Logger logger = Logger.getLogger(CommandExecutor.class.getName());
     private static Timer timer;
     private static CommandExecutor commandExecutor;
 
@@ -27,6 +27,7 @@ public class CommandExecutor implements Executor {
     }
 
     public void execute(ExecutionInstruction executionInstruction) {
+        logger.log(Level.FINE, () -> String.format("Start executing command: %s with parameters %d", CommandHandler.Commands.COMMANDS_START, executionInstruction.getTimeReminding()));
         TelegramBot telegramBot = new TelegramBot();
 
         timer.schedule(new TimerTask() {
@@ -43,11 +44,13 @@ public class CommandExecutor implements Executor {
 
     @Override
     public void stopExecuting() {
+        logger.log(Level.FINE, () -> String.format("Stop executing command: %s", CommandHandler.Commands.COMMANDS_STOP));
         timer.cancel();
     }
 
     @Override
     public void setupSettings() {
+        logger.log(Level.FINE, () -> String.format("Setup executing command: %s", CommandHandler.Commands.COMMANDS_SET_REMIND_TIME));
         // todo
     }
 }
