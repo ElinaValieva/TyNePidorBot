@@ -1,33 +1,42 @@
 package com.telegram.bot.models;
 
 import lombok.Getter;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-@Getter
 public class ExecutionInstruction {
 
-    private Set<String> recipients;
+    Logger logger = Logger.getLogger(ExecutionInstruction.class.getName());
 
-    private Set<String> messages;
+    @Getter
+    private Long chatId;
 
+    private List<String> messages;
+
+    @Getter
     private Integer timeReminding = 10000;
 
-    public ExecutionInstruction() {
+    public ExecutionInstruction(Update update) {
         initMessagesList();
+        chatId = update.getMessage().getChatId();
     }
 
-    public void setRecepients(String recipient) {
-        if (recipients.isEmpty())
-            recipients = new HashSet<>();
-
-        recipients.add(recipient);
+    public String getMessage() {
+        int message = ThreadLocalRandom.current().nextInt(0, messages.size());
+        return messages.get(message);
     }
 
-    public void setMessages(String message) {
+    public void setMessage(String message) {
         if (messages.isEmpty())
-            messages = new HashSet<>();
+            messages = new ArrayList<>();
 
         messages.add(message);
     }
@@ -38,10 +47,17 @@ public class ExecutionInstruction {
     }
 
     private void initMessagesList() {
-        //todo
-    }
-
-    public boolean checkReadinessInstruction() {
-        return !recipients.isEmpty();
+        messages = new ArrayList<>();
+        String path = ExecutionInstruction.class.getClassLoader().getResource("messages.txt").getPath();
+        System.out.println(path);
+        try (FileReader fileReader = new FileReader(path)) {
+            String value;
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while ((value = bufferedReader.readLine()) != null) {
+                messages.add(value);
+            }
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 }
