@@ -15,7 +15,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            CommandHandler.setExecutor(update.getMessage().getText());
+            CommandHandler.setExecutor(update.getMessage().getText(), update);
             SendMessage message = new SendMessage()
                     .setText(CommandHandler.Commands.COMMANDS_START.getCommandDescription())
                     .setChatId(update.getMessage().getChatId());
@@ -32,7 +32,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return "TyPidorBot";
+        return "TyNePidorBot";
     }
 
     public String getBotToken() {

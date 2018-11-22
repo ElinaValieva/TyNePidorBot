@@ -34,8 +34,8 @@ public class CommandExecutor implements Executor {
             @Override
             public void run() {
                 SendMessage sendMessage = new SendMessage()
-                        .setChatId(416062411L)
-                        .setText("Ты пидор!");
+                        .setChatId(executionInstruction.getChatId())
+                        .setText(executionInstruction.getMessage());
                 logger.log(Level.FINE, String.format("Start send message %s", sendMessage.getText()));
                 telegramBot.sendMessage(sendMessage);
             }
@@ -49,8 +49,28 @@ public class CommandExecutor implements Executor {
     }
 
     @Override
-    public void setupSettings() {
+    public void setupSettings(String timeCode, Integer cntRemains, ExecutionInstruction executionInstruction) {
         logger.log(Level.FINE, () -> String.format("Setup executing command: %s", CommandHandler.Commands.COMMANDS_SET_REMIND_TIME));
-        // todo
+        TelegramBot telegramBot = new TelegramBot();
+        telegramBot.sendMessage(new SendMessage()
+                .setChatId(executionInstruction.getChatId())
+                .setText(CommandHandler.Commands.COMMANDS_SET_REMIND_TIME.getCommandDescription()));
+        switch (timeCode) {
+            case "Min":
+                executionInstruction.setTimeReminding(60 * 1000 / cntRemains);
+                break;
+            case "Hour":
+                executionInstruction.setTimeReminding(60 * 60 * 1000 / cntRemains);
+                break;
+            case "Day":
+                executionInstruction.setTimeReminding(24 * 60 * 60 * 1000 / cntRemains);
+                break;
+            case "Week":
+                executionInstruction.setTimeReminding(7 * 24 * 60 * 60 * 1000 / cntRemains);
+                break;
+            case "Month":
+                executionInstruction.setTimeReminding(30 * 7 * 60 * 60 * 1000 / cntRemains);
+                break;
+        }
     }
 }

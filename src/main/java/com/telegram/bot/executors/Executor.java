@@ -8,5 +8,5 @@ public interface Executor {
 
     void stopExecuting();
 
-    void setupSettings();
+    void setupSettings(String timeCode, Integer cntRemains, ExecutionInstruction executionInstruction);
 }
