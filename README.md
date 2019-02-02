@@ -1,8 +1,16 @@
-# TyNePidorBot TelegramBot
-:innocent: Simple Telegram Bot for cheering up 
+# TyNePidorBot TelegramBot 
+:smiling_imp: Simple Evil Telegram Bot 
 
-![](https://cdn1.savepice.ru/uploads/2018/11/20/cbee7e07d9cc0aab692f542463e44427-full.jpg)
+### Prerequsites :heavy_exclamation_mark:
+
+ 1. `JDK 1.8` at least - for running the app
+ 2. `Maven 3+`            - for bulding a package
 
 ### How to start :star:
-1. add `@TyNePidorBot` in Telegram
-2. Write message
+
+1. Build `mvn clean install`, install VPN application if nessary
+2. add `@TyNePidorBot` in Telegram and write message
+
+### Reusing Bot :smile:
+
+Create you own Bot. Set `bot.properties` bots `token` and `name`.
