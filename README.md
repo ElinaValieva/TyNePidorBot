@@ -13,4 +13,4 @@
 
 ### Reusing Bot :smile:
 
-Create you own Bot. Set `bot.properties` bots `token` and `name`.
+Create your own Bot. Set `bot.properties` bots `token` and `name`.
