@@ -1,6 +1,7 @@
 package com.telegram.bot.telegramBot;
 
 import com.telegram.bot.answerService.AnswerService;
+import com.telegram.bot.configuration.BotConfiguration;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -24,7 +25,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendMessage(SendMessage message)  {
+    public void sendMessage(SendMessage message) {
         try {
             execute(message);
         } catch (TelegramApiException e) {
@@ -33,10 +34,10 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public String getBotUsername() {
-        return "TyNePidorBot";
+        return BotConfiguration.BOT_CONFIGURATION_NAME.getConfigs();
     }
 
     public String getBotToken() {
-        return "722133183:AAE-ro0COFraCPjYkdeB-qmFaOBVRvWlYYY";
+        return BotConfiguration.BOT_CONFIGURATION_TOKEN.getConfigs();
     }
 }
