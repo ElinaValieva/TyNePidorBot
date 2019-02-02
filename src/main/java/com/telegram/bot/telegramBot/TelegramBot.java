@@ -1,6 +1,6 @@
-package com.telegram.bot.models;
+package com.telegram.bot.telegramBot;
 
-import com.telegram.bot.executors.CommandHandler;
+import com.telegram.bot.answerService.AnswerService;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -12,12 +12,13 @@ import java.util.logging.Logger;
 public class TelegramBot extends TelegramLongPollingBot {
 
     Logger log = Logger.getLogger(TelegramBot.class.getName());
+    private AnswerService answerService = AnswerService.getInstance();
 
     public void onUpdateReceived(Update update) {
         if (update.hasMessage() && update.getMessage().hasText()) {
-            CommandHandler.setExecutor(update.getMessage().getText(), update);
+            String messageText = update.getMessage().getText();
             SendMessage message = new SendMessage()
-                    .setText(CommandHandler.Commands.COMMANDS_START.getCommandDescription())
+                    .setText(answerService.getByWordTrigger(messageText))
                     .setChatId(update.getMessage().getChatId());
             sendMessage(message);
         }
@@ -36,6 +37,6 @@ public class TelegramBot extends TelegramLongPollingBot {
     }
 
     public String getBotToken() {
-        return "798633763:AAG5MJIA75_gtQe5_3km6b5PdktkHnfSpbc";
+        return "722133183:AAE-ro0COFraCPjYkdeB-qmFaOBVRvWlYYY";
     }
 }
