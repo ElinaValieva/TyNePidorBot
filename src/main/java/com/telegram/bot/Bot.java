@@ -1,6 +1,6 @@
 package com.telegram.bot;
 
-import com.telegram.bot.models.TelegramBot;
+import com.telegram.bot.telegramBot.TelegramBot;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
