@@ -6,18 +6,18 @@
 
 ### Prerequsites :heavy_exclamation_mark:
 
- 1. `JDK 1.8` at least - for running the app
- 2. `Maven 3+`            - for bulding a package
+ 1. `JDK 1.8` at least - for running app
+ 2. `Maven 3+`  - for building package
 
 ### How to start :star:
 
-1. Build `mvn clean install`, install VPN application if nessary
-2. add `@TyNePidorBot` in Telegram and write message
+1. Build `mvn clean install`, use VPN if it necessary
+2. add `@TyNePidorBot` in Telegram and start writing messages
 
 ### Reusing Bot :smile:
 
 Create your own Bot. Set `bot.properties` bots `token` and `name`.
 
-### Example of using
+### Example :stuck_out_tongue_winking_eye:
 ![
 ](https://lh3.googleusercontent.com/J02SOmcwOwZM5xTsH_Dg_0QOrResw-jQ7J3GNHevEzWkqs3IL3Vx8pmQOrnOho5KP1fj2KFiNpE "Example")
