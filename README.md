@@ -1,8 +1,7 @@
 # TyNePidorBot TelegramBot 
 :smiling_imp: Simple Evil Telegram Bot 
 
-![
-](https://lh3.googleusercontent.com/DuRoIU-yQpy-ZKofnOafEjZJEhjR15zs-llvJ-zmJ7bhRYa_86tqFos4uvDLWsE0t8L_UcUiR-A "Info")
+![](https://github.com/ElinaValieva/TyNePidorBot/blob/master/header.JPG)
 
 ### Prerequsites :heavy_exclamation_mark:
 
@@ -19,5 +18,4 @@
 Create your own Bot. Set `bot.properties` bots `token` and `name`.
 
 ### Example :stuck_out_tongue_winking_eye:
-![
-](https://lh3.googleusercontent.com/J02SOmcwOwZM5xTsH_Dg_0QOrResw-jQ7J3GNHevEzWkqs3IL3Vx8pmQOrnOho5KP1fj2KFiNpE "Example")
+![](https://github.com/ElinaValieva/TyNePidorBot/blob/master/img.JPG)
